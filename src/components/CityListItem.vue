@@ -1,7 +1,7 @@
 <template>
     <div class="city-item"> 
         ID: {{ id }} City Name: {{ name }} 
-        <button @click="this.$emit('on-edit', this.city)" :disabled="isEditMode">Edit</button>
+        <button @click="$emit('on-edit', city)" :disabled="isEditMode">Edit</button>
         <button @click="$emit('delete-me')" :disabled="isEditMode">Delete</button>
     </div>
 </template>
