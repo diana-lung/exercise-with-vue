@@ -15,9 +15,11 @@
 
         <div v-for="item in list" :key="item.id">
             <city-list-item 
+                :track-by="item.id"
                 :city="item" 
                 :is-edit-mode="isEditMode" 
                 @on-edit="onEdit"
+                @on-delete="onDelete"
             />
         </div>
     </div>
@@ -61,8 +63,8 @@ export default {
         },
         onSave() {
           const { id, cityName } = this;
-          this.isEditMode = false;
-          this.$emit('on-save', { id, cityName });   
+          this.$emit('on-save', { id, cityName }); 
+          this.isEditMode = false;  
         },
         onCancel() {
           this.isEditMode = false;  
@@ -72,7 +74,9 @@ export default {
             this.isEditMode = true;
             this.cityName = name;
             this.id = id;
-            console.log('isEdit');
+        },
+        onDelete(item) {
+            this.$emit('on-delete', item.id);
         },
     },
 }

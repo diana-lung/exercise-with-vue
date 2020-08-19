@@ -1,13 +1,14 @@
 <template>
   <div id="app">
     <h1>Cities <span class="diff-color">List</span></h1>
-    <list :list="cities" @on-add-city="addCity" @on-save="onSave" />
+    <list :list="cities" @on-add-city="addCity" @on-save="onSave" @on-delete="onDelete"/>
   </div>
 </template>
 
 <script>
 import Vue from 'vue';
-import List from './components/List.vue'
+import List from './components/List.vue';
+import uuid from 'uuid';
 
 export default {
   name: 'App',
@@ -38,11 +39,17 @@ export default {
       this.cities.push(city);
     },
     onSave(city) {
-      console.log(city, 'city');
       const selectedCity = this.cities.filter(item => item.id === city.id)[0];
-      selectedCity.name = city.cityName;
-      console.log(this.cities, 'cities');
-      Vue.set(this.cities, 0, selectedCity)
+      const newCity = {
+        id: uuid(),
+        name: city.cityName
+      };
+      let index = this.cities.findIndex(item => item.id === city.id)
+      Vue.set(this.cities, index, newCity);
+    },
+    onDelete(id) {
+      let index = this.cities.findIndex(item => item.id === id)
+      let deleted = this.cities.splice(index, 1);
     },
   },
 }
