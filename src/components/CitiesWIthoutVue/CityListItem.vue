@@ -1,30 +1,23 @@
 <template>
     <div class="city-item"> 
-        {{ cityToString(city) }}
+        City Name: {{ name }} 
         <button @click="$emit('on-edit', city)" :disabled="isEditMode">Edit</button>
-        <button @click="deleteCity(city.id)" :disabled="isEditMode">Delete</button>
+        <button @click="$emit('on-delete', city)" :disabled="isEditMode">Delete</button>
     </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import { mapMutations } from 'vuex';
-
 export default {
     name: 'CityItem',
     props: {
         city: Object,
         isEditMode: Boolean,
     },
-    computed: {
-        ...mapGetters([
-        'cityToString'
-        ]),
-    },
-    methods: {
-        ...mapMutations([
-            'deleteCity'
-        ]),
+    data() {
+        return {
+            id: this.city.id,
+            name: this.city.name,
+        }
     },
 }
 </script>

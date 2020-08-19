@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>Cities <span class="diff-color">List</span></h1>
-    <list :list="cities" @on-add-city="addCity" @on-save="onSave" @on-delete="onDelete"/>
+    <list :list="getCities"/>
   </div>
 </template>
 
@@ -9,48 +9,17 @@
 import Vue from 'vue';
 import List from './components/List.vue';
 import uuid from 'uuid';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'App',
   components: {
     'list': List,
   },
-  data() {
-    return {
-      cities: [ 
-        {
-          id: 0,
-          name: 'Satu Mare'
-        },
-        {
-          id: 1,
-          name: 'Arad'
-        },
-        {
-          id: 2,
-          name: 'Timisoara'
-        }
-        ],
-    }
-  },
-
-  methods: {
-    addCity(city) {
-      this.cities.push(city);
-    },
-    onSave(city) {
-      const selectedCity = this.cities.filter(item => item.id === city.id)[0];
-      const newCity = {
-        id: uuid(),
-        name: city.cityName
-      };
-      let index = this.cities.findIndex(item => item.id === city.id)
-      Vue.set(this.cities, index, newCity);
-    },
-    onDelete(id) {
-      let index = this.cities.findIndex(item => item.id === id)
-      let deleted = this.cities.splice(index, 1);
-    },
+  computed: {
+    ...mapGetters([
+      'getCities'
+    ]),
   },
 }
 </script>
