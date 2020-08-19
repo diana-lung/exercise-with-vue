@@ -8,7 +8,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
     name: 'CityItem',
@@ -22,7 +22,7 @@ export default {
         ]),
     },
     methods: {
-        ...mapMutations([
+        ...mapActions([
             'deleteCity'
         ]),
     },

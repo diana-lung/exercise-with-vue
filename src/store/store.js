@@ -35,4 +35,15 @@ export const store = new Vuex.Store({
             let deleted = state.cities.splice(index, 1);
         },
     },
+    actions: {
+        addCity: ({commit}, city) => {
+            commit('addCity', city);
+        },
+        updateCity: ({commit}, city) => {
+            commit('updateCity', city);
+        },
+        deleteCity: ({commit}, city) => {
+            commit('deleteCity', city);
+        },
+    },
 });

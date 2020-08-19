@@ -10,7 +10,7 @@
         <div v-else class="addArea">
             <p>Normal mode is on!</p>
             <input type="text" v-model="newCity.name" />
-            <button @click="addCity(newCity)">Add</button>
+            <button @click="addCity(Object.assign({}, newCity)),resetInput()">Add</button>
         </div>
 
         <div v-for="item in list" :key="item.id">
@@ -26,7 +26,7 @@
 <script>
 import CityListItem from './CityListItem.vue';
 import uuid from 'uuid';
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
     name: 'CityList',
@@ -50,7 +50,7 @@ export default {
         }
     },
     methods: {
-        ...mapMutations([
+        ...mapActions([
             'addCity',
             'updateCity'
         ]),
@@ -62,6 +62,10 @@ export default {
         changeMode() {
           this.isEditMode = false;  
         }, 
+        resetInput() {
+            this.newCity.id = uuid();
+            this.newCity.name = '';
+        },
     },
 }
 </script>
