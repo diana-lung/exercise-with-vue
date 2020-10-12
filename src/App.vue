@@ -1,25 +1,18 @@
 <template>
   <div id="app">
-    <h1>Cities <span class="diff-color">List</span></h1>
-    <list :list="getCities"/>
+    <h1>Person <span class="diff-color">Data</span></h1>
+    <person-data />
   </div>
 </template>
 
 <script>
 import Vue from 'vue';
-import List from './components/List.vue';
-import uuid from 'uuid';
-import { mapGetters } from 'vuex';
+import Person from './components/Person.vue';
 
 export default {
   name: 'App',
   components: {
-    'list': List,
-  },
-  computed: {
-    ...mapGetters([
-      'getCities'
-    ]),
+    'person-data': Person,
   },
 }
 </script>

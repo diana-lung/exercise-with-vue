@@ -29,11 +29,11 @@ export default {
     },
     computed: {
         getFullName() {
-            return this.firstname + ' ' + this.lastname;
+            return `${this.firstname} ${this.lastname}`;
         },
         fullName: {
             get() {
-                return this.firstname + ' ' + this.lastname;
+                return `${this.firstname} ${this.lastname}`;
             },
             set() {
                 // do something
@@ -52,14 +52,12 @@ export default {
         setInitials() {
             let initialFirstName = this.firstname.split(' ').map((name) => name[0]).join(' ');
             let initialLastName = this.lastname.split(' ').map((name) => name[0]).join(' ');
-            return initialFirstName + ' ' + initialLastName; 
+            return `${initialFirstName} ${initialLastName}`; 
         },
         changeInitials() {
-           this.setInitials2= 'Ceva';
+           this.setInitials2= 'Lung Diana';
         },
         increment() {
-            this.fullName = ' Norbert Demeny ';
-            this.fullName
             this.count += 1;
         },
         decrement() {
@@ -68,7 +66,7 @@ export default {
     },
     watch: {
         initials(newValue, oldValue) {
-            alert('Old value: ' + oldValue + 'New Value: ' +newValue);
+            alert(`Old value: ${oldValue} New Value: ${newValue}`);
         },
         count(newValue) {
             if (newValue == 10) 
