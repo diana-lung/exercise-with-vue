@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import Vue from 'vue';
 import Person from './components/Person.vue';
 
 export default {

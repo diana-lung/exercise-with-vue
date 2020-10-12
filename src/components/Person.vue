@@ -55,7 +55,9 @@ export default {
             return `${initialFirstName} ${initialLastName}`; 
         },
         changeInitials() {
-           this.setInitials2= 'Lung Diana';
+            let initialFirstName = this.firstname.split(' ').map((name) => name[0]).join(' ');
+            let initialLastName = this.lastname.split(' ').map((name) => name[0]).join(' ');
+            this.setInitials2= `${initialFirstName} ${initialLastName}`;
         },
         increment() {
             this.count += 1;
